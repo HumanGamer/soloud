@@ -244,6 +244,11 @@ if (SOLOUD_BACKEND_ALSA)
 		${BACKENDS_SOURCES}
 		${BACKENDS_PATH}/alsa/soloud_alsa.cpp
 	)
+    
+	set (LINK_LIBRARIES
+		${LINK_LIBRARIES}
+        asound
+	)
 endif()
 
 # Filters
@@ -285,6 +290,17 @@ if (SOLOUD_C_API)
 	set (TARGET_HEADERS
 		${TARGET_HEADERS}
 		${HEADER_PATH}/soloud_c.h
+	)
+endif()
+
+if(UNIX AND NOT APPLE)
+    add_definitions (-D__LINUX_ALSA__)
+    
+    
+	set (LINK_LIBRARIES
+		${LINK_LIBRARIES}
+        pthread
+        dl
 	)
 endif()
 
