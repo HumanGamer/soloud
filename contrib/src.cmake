@@ -228,6 +228,24 @@ if (SOLOUD_BACKEND_WASAPI)
 	)
 endif()
 
+if (SOLOUD_BACKEND_OSS)
+	add_definitions (-DWITH_OSS)
+
+	set (BACKENDS_SOURCES
+		${BACKENDS_SOURCES}
+		${BACKENDS_PATH}/oss/soloud_oss.cpp
+	)
+endif()
+
+if (SOLOUD_BACKEND_ALSA)
+	add_definitions (-DWITH_ALSA)
+
+	set (BACKENDS_SOURCES
+		${BACKENDS_SOURCES}
+		${BACKENDS_PATH}/alsa/soloud_alsa.cpp
+	)
+endif()
+
 # Filters
 set (FILTERS_PATH ${SOURCE_PATH}/filter)
 set (FILTERS_SOURCES
